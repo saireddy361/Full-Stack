@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Registration Form</h2>
+    <form id="registrationForm">
+        <p>First Name: <input type="text" name="first_name" required></p>
+        <p>Middle Name: <input type="text" name="middle_name"></p>
+        <p>Last Name: <input type="text" name="last_name" required></p>
+        
+        <p>Course:
+            <select name="course" required>
+                <option value="cse">CSE</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="me">ME</option>
+                <option value="ce">CE</option>
+                <option value="aiml">AIML</option>
+                <option value="aids">AIDS</option>
+                <option value="it">IT</option>
+            </select>
+        </p>
+
+        <p>Gender:
+            <input type="radio" value="male" name="gender" required> Male
+            <input type="radio" value="female" name="gender"> Female
+        </p>
+
+        <p>Phone No: <input type="text" name="phone" required></p>
+
+        <p>Address: <textarea name="address" rows="5" cols="55" required></textarea></p>
+
+        <p>Email: <input type="email" name="email" required></p>
+
+        <p>Password: <input type="password" name="password" required></p>
+
+        <p>Retype Password: <input type="password" name="retype_password" required></p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Handle form submission with JavaScript
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from actually submitting
+
+            const formData = new FormData(this);
+            const password = formData.get("password");
+            const retypePassword = formData.get("retype_password");
+
+            // Check if passwords match
+            if (password !== retypePassword) {
+                alert("Passwords do not match. Please try again.");
+                return;
+            }
+
+            // Prepare data for saving to a text file
+            let formText = `Student Registration Details\n`;
+            formText += `First Name: ${formData.get("first_name")}\n`;
+            formText += `Middle Name: ${formData.get("middle_name")}\n`;
+            formText += `Last Name: ${formData.get("last_name")}\n`;
+            formText += `Course: ${formData.get("course")}\n`;
+            formText += `Gender: ${formData.get("gender")}\n`;
+            formText += `Phone No: ${formData.get("phone")}\n`;
+            formText += `Address: ${formData.get("address")}\n`;
+            formText += `Email: ${formData.get("email")}\n`;
+
+            // Create a Blob and trigger a download
+            const blob = new Blob([formText], { type: "text/plain;charset=utf-8" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "registration_details.txt"; // Set the default file name
+
+            // Trigger download
+            link.click();
+
+            // Optionally reset the form
+            document.getElementById("registrationForm").reset();
+
+            alert("Registration Successful! The details have been saved to a text file.");
+        });
+    </script>
+</body>
+</html>

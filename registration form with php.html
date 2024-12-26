@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Registration Form</h2>
+    <form id="registrationForm" action="form-submit.php" method="POST">
+        <p>First Name: <input type="text" name="first_name" required></p>
+        <p>Middle Name: <input type="text" name="middle_name"></p>
+        <p>Last Name: <input type="text" name="last_name" required></p>
+        
+        <p>Course:
+            <select name="course" required>
+                <option value="cse">CSE</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="me">ME</option>
+                <option value="ce">CE</option>
+                <option value="aiml">AIML</option>
+                <option value="aids">AIDS</option>
+                <option value="it">IT</option>
+            </select>
+        </p>
+
+        <p>Gender:
+            <input type="radio" value="male" name="gender" required> Male
+            <input type="radio" value="female" name="gender"> Female
+        </p>
+
+        <p>Phone No: <input type="text" name="phone" required></p>
+
+        <p>Address: <textarea name="address" rows="5" cols="55" required></textarea></p>
+
+        <p>Email: <input type="email" name="email" required></p>
+
+        <p>Password: <input type="password" name="password" required></p>
+
+        <p>Retype Password: <input type="password" name="retype_password" required></p>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
